@@ -3,7 +3,13 @@ function hitung() {
     let num2 = parseFloat(document.getElementById('num2').value);
     let hasil = num1 + num2;
 
-    document.getElementById('result').innerHTML = 'Hasil: ' + hasil;
+    // document.getElementById('result').innerHTML = 'Hasil: ' + hasil;
+
+    if (isNaN(hasil)) {
+        document.getElementById('result').innerHTML = 'Hasil: Gak ada wlee';
+    } else {
+        document.getElementById('result').innerHTML = 'Hasil: ' + hasil;
+    }
 }
 
 function reset() {
