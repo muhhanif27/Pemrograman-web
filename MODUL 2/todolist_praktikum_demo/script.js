@@ -5,7 +5,7 @@ const taskList = document.querySelector("#taskList");
 function addTask() {
     const taskText = taskInput.value.trim();
     if (taskText === "") {
-        alert("Task cannot be empty!"); 
+        alert("Input jangan kosong"); 
         return;
     }
 
