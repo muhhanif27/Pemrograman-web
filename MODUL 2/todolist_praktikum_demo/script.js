@@ -1,5 +1,6 @@
-const taskInput = document.getElementById("taskInput");
-const taskList = document.getElementById("taskList");
+const taskInput = document.querySelector("#taskInput");
+const taskList = document.querySelector("#taskList");
+
 
 function addTask() {
     const taskText = taskInput.value.trim();
