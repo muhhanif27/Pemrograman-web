@@ -43,7 +43,7 @@ function editTask(listItem, taskSpan) {
     const tempInput = document.createElement("input");
     tempInput.type = "text";
     tempInput.value = taskSpan.textContent;
-    tempInput.className = "edit-input";
+    // tempInput.className = "edit-input";
 
     listItem.replaceChild(tempInput, taskSpan);
 
