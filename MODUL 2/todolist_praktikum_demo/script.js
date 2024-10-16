@@ -13,7 +13,7 @@ function addTask() {
 
     const taskSpan = document.createElement("span");
     taskSpan.textContent = taskText;
-    taskSpan.className = "task-text";
+    // taskSpan.className = "task-text";
 
     const editButton = document.createElement("button");
     editButton.innerHTML = '<i class="fas fa-edit"></i>'; 
