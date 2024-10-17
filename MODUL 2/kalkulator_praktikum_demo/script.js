@@ -25,7 +25,7 @@ buttons.forEach((item) => {
       } else if (item.id == "exponentiation") {
           display.innerText += "**";
       } else if (item.id == "modulus") {
-          display.innerText += "%";
+          display.innerText += "MOD";
       } else if (item.id == "percent") {
           let currentValue = parseFloat(display.innerText);
           if (!isNaN(currentValue)) {
