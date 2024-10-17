@@ -15,7 +15,7 @@ buttons.forEach((item) => {
                   .replace(/(\d)(\()/g, "$1*(")
                   .replace(/(\))(\d)/g, "$1*$2")
                   .replace(/MOD/g, '%')
-                  .replace(/\^/g, '**');;
+                  .replace(/\^/g, '**');
               display.innerText = eval(expression.replace(/×/g, '*').replace(/÷/g, '/'));
           } catch (error) {
               display.innerText = "Error";
