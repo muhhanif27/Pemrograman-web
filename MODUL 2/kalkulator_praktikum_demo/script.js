@@ -14,7 +14,8 @@ buttons.forEach((item) => {
               let expression = display.innerText
                   .replace(/(\d)(\()/g, "$1*(")
                   .replace(/(\))(\d)/g, "$1*$2")
-                  .replace(/MOD/g, '%');
+                  .replace(/MOD/g, '%')
+                  .replace(/\^/g, '**');;
               display.innerText = eval(expression.replace(/×/g, '*').replace(/÷/g, '/'));
           } catch (error) {
               display.innerText = "Error";
@@ -24,7 +25,7 @@ buttons.forEach((item) => {
           display.innerText = "No input";
           setTimeout(() => (display.innerText = ""), 2000);
       } else if (item.id == "exponentiation") {
-          display.innerText += "**";
+          display.innerText += "^";
       } else if (item.id == "modulus") {
           display.innerText += "MOD";
       } else if (item.id == "percent") {
