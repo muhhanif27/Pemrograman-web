@@ -15,7 +15,7 @@ function cetakAngka($n) {
     }
 }
 
-// Contoh penggunaan tanpa input dari user
-$n = 25; // Anda dapat mengubah nilai ini sesuai kebutuhan
+echo "Input angka terserah: ";
+$n = (int)readline(); 
 cetakAngka($n);
 ?>

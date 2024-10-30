@@ -7,71 +7,69 @@ spl_autoload_register(function ($class_name) {
     }
 });
 
-use Controllers\MobilController;
+use Controllers\RobotController;
 
-$mobilController = new MobilController();
+$robotController = new RobotController();
 
 while (true) {
-    // Menampilkan menu pilihan jenis mobil
-    echo "Pilih jenis mobil:\n";
-    echo "1. Mobil Biasa\n";
-    echo "2. Mobil Sport\n";
+    echo "Pilih jenis robot:\n";
+    echo "1. Robot Biasa\n";
+    echo "2. Robot Tempur\n";
     echo "3. Keluar\n";
-    echo "Masukkan pilihan jenis mobil (1, 2, atau 3): ";
-    $pilihanMobil = (int)readline();
+    echo "Masukkan pilihan jenis robot (1, 2, atau 3): ";
+    $pilihanRobot = (int)readline();
 
-    if ($pilihanMobil === 3) {
+    if ($pilihanRobot === 3) {
         echo "Terima kasih telah menggunakan program ini.\n";
         break;
-    } elseif ($pilihanMobil !== 1 && $pilihanMobil !== 2) {
+    } elseif ($pilihanRobot !== 1 && $pilihanRobot !== 2) {
         echo "Pilihan tidak valid. Silakan masukkan 1, 2, atau 3.\n";
         continue;
     }
 
-    // Loop untuk memilih aksi pada mobil yang dipilih
     while (true) {
         echo "\nPilih aksi yang ingin dilakukan:\n";
-        echo "1. Nyalakan Mesin\n";
-        echo "2. Jalankan Mobil\n";
-        echo "3. Cek Oli\n";
-        echo "4. Servis Berkala\n";
-        if ($pilihanMobil === 2) {
-            echo "5. Aktifkan Mode Sport (Hanya untuk Mobil Sport)\n";
+        echo "1. Aktifkan Robot\n";
+        echo "2. Gerakkan Robot\n";
+        echo "3. Cek Energi\n";
+        echo "4. Isi Ulang Energi\n";
+        if ($pilihanRobot === 2) {
+            echo "5. Aktifkan Mode Tempur (Hanya untuk Robot Tempur)\n";
+            echo "6. Tembakkan Senjata (Hanya untuk Robot Tempur)\n";
         }
-        echo "6. Kembali ke Pilihan Mobil\n";
-        echo "Masukkan pilihan aksi (1-6): ";
-        $pilihanAksi = (int)readline();
+        echo "7. Kembali ke Pilihan Robot\n";
+        echo "Masukkan pilihan aksi (1-7): ";
+        $choice = (int)readline();
 
-        // Memeriksa pilihan aksi dan memanggil metode yang sesuai
-        if ($pilihanAksi === 1) {
-            if ($pilihanMobil === 1) {
-                $mobilController->tampilkanMobilBiasa()->nyalakanMesin();
+        if ($choice === 1) {
+            if ($pilihanRobot === 1) {
+                $robotController->tampilkanRobotBiasa()->nyalakanMesin();
             } else {
-                $mobilController->tampilkanMobilSport()->nyalakanMesin();
+                $robotController->tampilkanRobotTempur()->nyalakanMesin();
             }
-        } elseif ($pilihanAksi === 2) {
-            if ($pilihanMobil === 1) {
-                $mobilController->tampilkanMobilBiasa()->jalan();
+        } elseif ($choice === 2) {
+            if ($pilihanRobot === 1) {
+                $robotController->tampilkanRobotBiasa()->jalan();
             } else {
-                $mobilController->tampilkanMobilSport()->jalan();
+                $robotController->tampilkanRobotTempur()->jalan();
             }
-        } elseif ($pilihanAksi === 3) {
-            if ($pilihanMobil === 1) {
-                $mobilController->tampilkanMobilBiasa()->cekOli();
+        } elseif ($choice === 3) {
+            if ($pilihanRobot === 1) {
+                $robotController->tampilkanRobotBiasa()->cekEnergi();
             } else {
-                $mobilController->tampilkanMobilSport()->cekOli();
+                $robotController->tampilkanRobotTempur()->cekEnergi();
             }
-        } elseif ($pilihanAksi === 4) {
-            if ($pilihanMobil === 1) {
-                $mobilController->tampilkanMobilBiasa()->servisBerkala();
+        } elseif ($choice === 4) {
+            if ($pilihanRobot === 1) {
+                $robotController->tampilkanRobotBiasa()->isiUlangEnergi();
             } else {
-                $mobilController->tampilkanMobilSport()->servisBerkala();
+                $robotController->tampilkanRobotTempur()->isiUlangEnergi();
             }
-        } elseif ($pilihanAksi === 5 && $pilihanMobil === 2) {
-            // Aktifkan Mode Sport hanya untuk Mobil Sport
-            $mobilController->tampilkanMobilSport()->aktifkanModeSport();
-        } elseif ($pilihanAksi === 6) {
-            // Kembali ke menu jenis mobil
+        } elseif ($choice === 5 && $pilihanRobot === 2) {
+            $robotController->tampilkanRobotTempur()->aktifkanModeTempur();
+        } elseif ($choice === 6 && $pilihanRobot === 2) {
+            $robotController->tampilkanRobotTempur()->tembak();
+        } elseif ($choice === 7) {
             break;
         } else {
             echo "Pilihan tidak valid. Silakan masukkan angka sesuai menu.\n";

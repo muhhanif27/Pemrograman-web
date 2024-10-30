@@ -1,7 +1,7 @@
 <?php
 namespace Models;
 
-abstract class Kendaraan {
+abstract class Aktif {
     protected $merk;
     protected $tahun;
 
@@ -10,10 +10,10 @@ abstract class Kendaraan {
         $this->tahun = $tahun;
     }
 
-    // Method abstrak
+    // Method abstract, harus diimplementasikan di kelas turunannya
     abstract public function nyalakanMesin();
 
-    // Magic method __toString
+    // Magic method untuk menampilkan info robot
     public function __toString() {
         return "Merk: $this->merk, Tahun: $this->tahun\n";
     }
