@@ -1,18 +1,13 @@
 <?php
 
-// spl_autoload_register(function ($class_name) {
-//     $file = __DIR__ . '/' . str_replace('\\', '/', $class_name) . '.php';
-//     if (file_exists($file)) {
-//         require_once $file;
-//     }
-// });
 
-include_once 'Traits/EnergiTrait.php';
-include_once 'Traits/SenjataTrait.php';
-include_once 'Models/Aktif.php';
-include_once 'Models/Robot.php';
-include_once 'Models/RobotTempur.php';
-include_once 'Controllers/RobotController.php';
+
+include 'Traits/EnergiTrait.php';
+include 'Traits/SenjataTrait.php';
+include 'Models/Aktif.php';
+include 'Models/Robot.php';
+include 'Models/RobotTempur.php';
+include 'Controllers/RobotController.php';
 
 use Controllers\RobotController;
 
