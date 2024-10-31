@@ -8,7 +8,7 @@ class Robot extends Aktif {
 
     protected $warna;
     protected $kecepatan;
-    protected $isActive = false; // Robot dimulai dalam keadaan non-aktif
+    protected $isActive = false; 
 
     public function __construct($merk, $tahun, $warna, $kecepatan) {
         parent::__construct($merk, $tahun);
@@ -17,7 +17,7 @@ class Robot extends Aktif {
     }
 
     public function nyalakanMesin() {
-        $this->isActive = true; // Robot diaktifkan
+        $this->isActive = true; 
         echo "Robot $this->merk siap untuk beroperasi.\n";
     }
 
