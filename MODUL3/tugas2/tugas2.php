@@ -7,8 +7,8 @@ function cetakAngka($n) {
             echo "2024\n";
         } elseif ($i % 4 == 0) {
             echo "Pemrograman\n";
-        } elseif ($i % 6 == 0) {
-            echo "Website\n";
+        } elseif ($i % 3 == 0) {
+            echo "Hanif\n";
         } else {
             echo $i . "\n";
         }
