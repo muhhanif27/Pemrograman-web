@@ -10,10 +10,10 @@ abstract class Aktif {
         $this->tahun = $tahun;
     }
 
-    // Method abstract, harus diimplementasikan di kelas turunannya
+    
     abstract public function nyalakanMesin();
 
-    // Magic method untuk menampilkan info robot
+    
     public function __toString() {
         return "Merk: $this->merk, Tahun: $this->tahun\n";
     }

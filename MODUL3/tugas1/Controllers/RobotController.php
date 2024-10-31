@@ -5,7 +5,7 @@ use Models\Robot;
 use Models\RobotTempur;
 
 class RobotController {
-    private $currentRobot; // Properti untuk menyimpan robot saat ini
+    private $currentRobot; 
 
     public function tampilkanRobotBiasa() {
         if ($this->currentRobot === null || !$this->currentRobot instanceof Robot) {
