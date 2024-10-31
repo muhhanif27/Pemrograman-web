@@ -1,7 +1,5 @@
 <?php
 
-
-
 include 'Traits/EnergiTrait.php';
 include 'Traits/SenjataTrait.php';
 include 'Models/Aktif.php';
