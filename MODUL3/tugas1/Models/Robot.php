@@ -20,7 +20,7 @@ class Robot extends Aktif {
     }
 
     public function jalan() {
-        // Menggunakan 10% energi untuk aksi jalan
+        
         $this->gunakanEnergi(10);
         if ($this->energi > 0) {
             echo "Robot $this->merk berwarna $this->warna bergerak dengan kecepatan $this->kecepatan km/jam.\n";
