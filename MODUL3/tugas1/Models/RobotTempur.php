@@ -1,5 +1,6 @@
 <?php
 namespace Models;
+namespace Models;
 
 use Traits\SenjataTrait;
 
@@ -14,6 +15,11 @@ class RobotTempur extends Robot {
     }
 
     public function aktifkanModeTempur() {
+        if (!$this->isActive) {
+            echo "Robot belum diaktifkan, tidak bisa mengaktifkan mode tempur.\n";
+            return;
+        }
+
         if ($this->modeTempur) {
             $this->aktifkanSenjata();
             echo "Mode tempur diaktifkan pada robot $this->merk!\n";
