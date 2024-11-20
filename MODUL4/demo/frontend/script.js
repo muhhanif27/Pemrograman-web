@@ -1,4 +1,3 @@
-// Fetch data dari API dan render ke UI
 fetch('http://localhost/MODUL4/demo/backend/dbconfig.php')
     .then(response => {
         if (!response.ok) {
@@ -9,16 +8,16 @@ fetch('http://localhost/MODUL4/demo/backend/dbconfig.php')
     .then(data => {
         const productContainer = document.querySelector('.product-container');
 
-        // Bersihkan kontainer sebelum menambahkan data baru
+        
         productContainer.innerHTML = '';
 
-        // Iterasi data dan tambahkan ke UI
+       
         data.forEach(item => {
-            // Pastikan ID produk belum ada di dalam kontainer untuk mencegah duplikasi
+           
             if (!document.getElementById(`product-${item.id}`)) {
                 const card = document.createElement('div');
                 card.classList.add('product-card');
-                card.id = `product-${item.id}`; // Set ID untuk setiap produk
+                card.id = `product-${item.id}`; 
                 card.innerHTML = `
                     <img src="${item.fish_image}" alt="${item.fish_name}">
                     <div class="product-info">

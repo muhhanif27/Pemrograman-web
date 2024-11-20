@@ -1,13 +1,13 @@
 <?php 
 
-// Routing untuk API
+
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
 
-// Prefix API Path
+
 $basePath = "/MODUL4/demo/backend/dbconfig.php/api/ikan";
 
-// Menentukan ID dari URL jika ada
+
 $id = null;
 if (strpos($uri, $basePath) === 0) {
     $pathParts = explode('/', trim(str_replace($basePath, '', $uri), '/'));
@@ -16,7 +16,7 @@ if (strpos($uri, $basePath) === 0) {
     }
 }
 
-// Koneksi database
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -24,19 +24,19 @@ $database = "web_modul4";
 
 $conn = new mysqli($servername, $username, $password, $database);
 
-// Cek koneksi
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Menangani request berdasarkan metode HTTP
+
 switch ($method) {
     case 'GET':
         if ($id) {
-            // Mengambil satu item berdasarkan ID
+           
             $sql = "SELECT id, fish_image, price, fish_name FROM ikan WHERE id = $id";
         } else {
-            // Mengambil semua item
+         
             $sql = "SELECT id, fish_image, price, fish_name FROM ikan";
         }
 
@@ -55,7 +55,7 @@ switch ($method) {
         break;
 
     case 'POST':
-        // Menambahkan item baru
+     
         $data = json_decode(file_get_contents('php://input'), true);
         $fish_name = $data['fish_name'];
         $price = $data['price'];
@@ -72,7 +72,7 @@ switch ($method) {
         break;
 
     case 'PUT':
-        // Mengupdate item berdasarkan ID
+    
         if ($id) {
             $data = json_decode(file_get_contents('php://input'), true);
             $fish_name = $data['fish_name'];
@@ -92,7 +92,7 @@ switch ($method) {
         break;
 
     case 'DELETE':
-        // Menghapus item berdasarkan ID
+        
         if ($id) {
             $sql = "DELETE FROM ikan WHERE id = $id";
             
