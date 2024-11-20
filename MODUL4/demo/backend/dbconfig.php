@@ -1,11 +1,27 @@
 <?php 
 
+// Routing untuk API
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$method = $_SERVER['REQUEST_METHOD'];
+
+// Prefix API Path
+$basePath = "/MODUL4/demo/backend/dbconfig.php/api/ikan";
+
+// Menentukan ID dari URL jika ada
+$id = null;
+if (strpos($uri, $basePath) === 0) {
+    $pathParts = explode('/', trim(str_replace($basePath, '', $uri), '/'));
+    if (!empty($pathParts[0])) {
+        $id = $pathParts[0];
+    }
+}
+
+// Koneksi database
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "web_modul4";
 
-// Membuat koneksi
 $conn = new mysqli($servername, $username, $password, $database);
 
 // Cek koneksi
@@ -13,22 +29,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Mendapatkan ID dari URL jika ada
-$id = isset($_GET['id']) ? $_GET['id'] : null;
-
-// Cek jenis request
-$method = $_SERVER['REQUEST_METHOD'];
-
+// Menangani request berdasarkan metode HTTP
 switch ($method) {
     case 'GET':
         if ($id) {
             // Mengambil satu item berdasarkan ID
             $sql = "SELECT id, fish_image, price, fish_name FROM ikan WHERE id = $id";
         } else {
-            // Mengambil semua item jika ID tidak diberikan
+            // Mengambil semua item
             $sql = "SELECT id, fish_image, price, fish_name FROM ikan";
         }
-        
+
         $result = $conn->query($sql);
         $items = [];
 
@@ -101,5 +112,4 @@ switch ($method) {
 }
 
 $conn->close();
-
 ?>
