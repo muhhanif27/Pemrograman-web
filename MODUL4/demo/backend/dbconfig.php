@@ -65,9 +65,9 @@ switch ($method) {
                 VALUES ('$fish_image', '$price', '$fish_name')";
         
         if ($conn->query($sql) === TRUE) {
-            echo json_encode(['message' => 'Fish added successfully']);
+            echo json_encode(['message' => 'Ikan berhasil ditambahkan']);
         } else {
-            echo json_encode(['message' => 'Error adding fish: ' . $conn->error]);
+            echo json_encode(['message' => 'Gagal Menambah ikan: ' . $conn->error]);
         }
         break;
 
@@ -82,12 +82,12 @@ switch ($method) {
             $sql = "UPDATE ikan SET fish_image = '$fish_image', price = '$price', fish_name = '$fish_name' WHERE id = $id";
             
             if ($conn->query($sql) === TRUE) {
-                echo json_encode(['message' => 'Fish updated successfully']);
+                echo json_encode(['message' => 'Ikan berhasil diupdate']);
             } else {
-                echo json_encode(['message' => 'Error updating fish: ' . $conn->error]);
+                echo json_encode(['message' => 'Gagal update ikan: ' . $conn->error]);
             }
         } else {
-            echo json_encode(['message' => 'ID is required to update']);
+            echo json_encode(['message' => 'butuh id untuk update']);
         }
         break;
 
@@ -97,17 +97,17 @@ switch ($method) {
             $sql = "DELETE FROM ikan WHERE id = $id";
             
             if ($conn->query($sql) === TRUE) {
-                echo json_encode(['message' => 'Fish deleted successfully']);
+                echo json_encode(['message' => 'Berhasil hapus ikan']);
             } else {
-                echo json_encode(['message' => 'Error deleting fish: ' . $conn->error]);
+                echo json_encode(['message' => 'Gagal hapus ikan: ' . $conn->error]);
             }
         } else {
-            echo json_encode(['message' => 'ID is required to delete']);
+            echo json_encode(['message' => 'butuh id untuk menghapus']);
         }
         break;
 
     default:
-        echo json_encode(['message' => 'Request method not supported']);
+        echo json_encode(['message' => 'Request method tidak mendukung']);
         break;
 }
 
