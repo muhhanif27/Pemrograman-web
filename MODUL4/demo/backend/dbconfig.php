@@ -7,7 +7,6 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 $basePath = "/MODUL4/demo/backend/dbconfig.php/api/ikan";
 
-
 $id = null;
 if (strpos($uri, $basePath) === 0) {
     $pathParts = explode('/', trim(str_replace($basePath, '', $uri), '/'));
