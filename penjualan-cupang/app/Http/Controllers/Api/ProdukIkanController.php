@@ -62,10 +62,10 @@ class ProdukIkanController extends Controller
         $produk->update([
             'nama' => $data['nama'],
             'harga' => $data['harga'],
-            'image' => $data['image'] ?? $produk->image, // Jika tidak ada gambar baru, tetap gunakan gambar lama
+            'image' => $data['image'] ?? $produk->image, 
         ]);
     
-        // Kembalikan respons JSON
+        
         return response()->json([
             'success' => true,
             'message' => 'Produk ikan berhasil diperbarui',

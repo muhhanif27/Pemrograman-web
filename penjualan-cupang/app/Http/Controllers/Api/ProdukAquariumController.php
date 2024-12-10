@@ -40,17 +40,17 @@ class ProdukAquariumController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validasi input
+        
         $data = $request->validate([
             'nama' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'harga' => 'required|numeric',
         ]);
 
-        // Cari produk
+
         $produk = ProdukAquarium::findOrFail($id);
 
-        // Jika ada file gambar, proses upload
+      
         if ($request->hasFile('image')) {
             if ($produk->image && file_exists(public_path('storage/' . $produk->image))) {
                 unlink(public_path('storage/' . $produk->image));
@@ -58,10 +58,10 @@ class ProdukAquariumController extends Controller
             $data['image'] = $request->file('image')->store('produk_aquarium', 'public');
         }
 
-        // Update produk
+        
         $produk->update($data);
 
-        // Berikan respons
+        
         return response()->json([
             'success' => true,
             'message' => 'Produk berhasil diperbarui',
