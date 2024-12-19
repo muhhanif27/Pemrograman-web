@@ -43,7 +43,7 @@ export default {
 
 <style>
 body {
-  background-color: #f8f9fa;
+  background-color: #117be6;
   font-family: 'Arial', sans-serif;
 }
 

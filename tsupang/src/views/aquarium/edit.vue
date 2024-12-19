@@ -2,7 +2,7 @@
     <div class="container">
       <h1 class="my-4">Edit Aquarium</h1>
       <form @submit.prevent="submitForm">
-        <!-- Nama Aquarium -->
+       
         <div class="mb-3">
           <label for="nama" class="form-label">Nama Aquarium</label>
           <input
@@ -15,7 +15,7 @@
           />
         </div>
   
-        <!-- Gambar Aquarium -->
+       
         <div class="mb-3">
           <label for="image" class="form-label">Gambar Aquarium</label>
           <input
@@ -30,7 +30,7 @@
           <img :src="imagePreview" alt="Preview" class="img-fluid" style="max-width: 200px" />
         </div>
   
-        <!-- Harga Aquarium -->
+       
         <div class="mb-3">
           <label for="harga" class="form-label">Harga</label>
           <input
@@ -43,8 +43,8 @@
           />
         </div>
   
-        <!-- Tombol Submit -->
-        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+        
+        <button type="submit" class="btn btn-success">Simpan Perubahan</button>
       </form>
     </div>
   </template>
@@ -59,30 +59,29 @@
   const router = useRouter();
   const route = useRoute();
   const aquariumId = route.params.id;
-  
-  // Menangani input gambar
+
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
       imagePreview.value = URL.createObjectURL(file);
-      aquarium.value.image = file; // Simpan file untuk dikirim ke backend
+      aquarium.value.image = file; 
     }
   };
   
-  // Ambil data aquarium berdasarkan ID
+  
   const fetchAquarium = async () => {
     try {
       const response = await Api.get(`/produk-aquarium/${aquariumId}`);
       aquarium.value.nama = response.data.nama;
       aquarium.value.harga = response.data.harga;
-      imagePreview.value = response.data.image; // Tampilkan gambar awal
+      imagePreview.value = response.data.image;
     } catch (error) {
       console.error('Gagal mengambil data aquarium:', error);
       alert('Gagal mengambil data aquarium.');
     }
   };
   
-  // Menangani form submit
+
   const submitForm = async () => {
     const formData = new FormData();
     formData.append('nama', aquarium.value.nama);
@@ -91,6 +90,12 @@
     }
     formData.append('harga', aquarium.value.harga);
   
+
+    for (let pair of formData.entries()) {
+    console.log(pair[0], pair[1]);
+  }
+
+
     try {
       await Api.post(`/produk-aquarium/${aquariumId}?_method=PUT`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },

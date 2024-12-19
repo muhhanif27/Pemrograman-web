@@ -2,7 +2,7 @@
     <div class="container">
       <h1 class="my-4">Edit Ikan</h1>
       <form @submit.prevent="submitForm">
-        <!-- Nama Ikan -->
+       
         <div class="mb-3">
           <label for="nama" class="form-label">Nama Ikan</label>
           <input
@@ -15,7 +15,7 @@
           />
         </div>
   
-        <!-- Gambar Ikan -->
+        
         <div class="mb-3">
           <label for="image" class="form-label">Gambar Ikan</label>
           <input
@@ -30,7 +30,7 @@
           <img :src="imagePreview" alt="Preview" class="img-fluid" style="max-width: 200px" />
         </div>
   
-        <!-- Harga Ikan -->
+       
         <div class="mb-3">
           <label for="harga" class="form-label">Harga</label>
           <input
@@ -43,8 +43,8 @@
           />
         </div>
   
-        <!-- Tombol Submit -->
-        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+        
+        <button type="submit" class="btn btn-success">Simpan Perubahan</button>
       </form>
     </div>
   </template>
@@ -60,49 +60,54 @@
   const route = useRoute();
   const ikanId = route.params.id;
   
-  // Menangani input gambar
+  
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
       imagePreview.value = URL.createObjectURL(file);
-      ikan.value.image = file; // Simpan file untuk dikirim ke backend
+      ikan.value.image = file; 
     }
   };
   
-  // Ambil data ikan berdasarkan ID
+  
   const fetchIkan = async () => {
     try {
       const response = await Api.get(`/produk-ikan/${ikanId}`);
       ikan.value.nama = response.data.nama;
       ikan.value.harga = response.data.harga;
-      imagePreview.value = response.data.image; // Tampilkan gambar awal
+      imagePreview.value = response.data.image; 
     } catch (error) {
       console.error('Gagal mengambil data ikan:', error);
       alert('Gagal mengambil data ikan.');
     }
   };
   
-  // Menangani form submit
+
   const submitForm = async () => {
-    const formData = new FormData();
-    formData.append('nama', ikan.value.nama);
-    if (ikan.value.image instanceof File) {
-      formData.append('image', ikan.value.image);
-    }
-    formData.append('harga', ikan.value.harga);
+  const formData = new FormData();
+  formData.append('nama', ikan.value.nama);
+  if (ikan.value.image instanceof File) {
+    formData.append('image', ikan.value.image);
+  }
+  formData.append('harga', ikan.value.harga);
+
   
-    try {
-      await Api.post(`/produk-ikan/${ikanId}?_method=PUT`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      alert('Data berhasil diperbarui!');
-      router.push('/ikan');
-    } catch (error) {
-      console.error('Gagal memperbarui data:', error);
-      alert('Gagal memperbarui data.');
-    }
-  };
-  
+  for (let pair of formData.entries()) {
+    console.log(pair[0], pair[1]);
+  }
+
+  try {
+    await Api.post(`/produk-ikan/${ikanId}?_method=PUT`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    alert('Data berhasil diperbarui!');
+    router.push('/ikan');
+  } catch (error) {
+    console.error('Gagal memperbarui data:', error);
+    alert('Gagal memperbarui data.');
+  }
+};
+
   onMounted(fetchIkan);
   </script>
   

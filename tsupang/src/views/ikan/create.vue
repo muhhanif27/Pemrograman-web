@@ -2,7 +2,7 @@
     <div class="container">
       <h1 class="my-4">Tambah Ikan</h1>
       <form @submit.prevent="submitForm">
-        <!-- Nama Ikan -->
+       
         <div class="mb-3">
           <label for="nama" class="form-label">Nama Ikan</label>
           <input
@@ -15,7 +15,7 @@
           />
         </div>
   
-        <!-- Gambar Ikan -->
+       
         <div class="mb-3">
           <label for="image" class="form-label">Pilih Gambar Ikan</label>
           <input
@@ -31,7 +31,7 @@
           <img :src="imagePreview" alt="Preview" class="img-fluid" style="max-width: 200px" />
         </div>
   
-        <!-- Harga Ikan -->
+      
         <div class="mb-3">
           <label for="harga" class="form-label">Harga</label>
           <input
@@ -44,8 +44,8 @@
           />
         </div>
   
-        <!-- Tombol Submit -->
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        
+        <button type="submit" class="btn btn-success">Simpan</button>
       </form>
     </div>
   </template>
@@ -55,21 +55,21 @@
   import { useRouter } from 'vue-router';
   import Api from '../../api';
   
-  // State untuk data ikan
+ 
   const ikan = ref({ nama: '', image: null, harga: '' });
   const imagePreview = ref(null);
   const router = useRouter();
   
-  // Fungsi untuk menangani input gambar
+ 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
       imagePreview.value = URL.createObjectURL(file);
-      ikan.value.image = file; // Simpan file untuk dikirim ke backend
+      ikan.value.image = file; 
     }
   };
   
-  // Fungsi untuk submit form
+  
   const submitForm = async () => {
     const formData = new FormData();
     formData.append('nama', ikan.value.nama);
@@ -77,12 +77,12 @@
     formData.append('image', ikan.value.image);
   
     try {
-      // Kirim request ke API
+     
       await Api.post('/produk-ikan', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
   
-      // Notifikasi dan redirect
+     
       alert('Data berhasil ditambahkan!');
       router.push('/ikan');
     } catch (error) {
